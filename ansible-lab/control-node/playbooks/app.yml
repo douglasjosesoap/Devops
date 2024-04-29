@@ -1,0 +1,81 @@
+---
+- name: Configurar servidor de aplicação Java
+  hosts: app01
+  user: vagrant
+  become: yes
+  vars:
+    - dbhost: "db01"
+    - dbname: "notes"
+    - dbusername: "notesapp"
+    - dbpassword: "123qwe."
+  tasks:
+    - name: Adicionar usuário de app
+      user:
+        name: app
+        comment: usuário de aplicação
+        uid: 500
+    - name: Download do Maven
+      get_url:
+        url: https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.1.0/apache-maven-3.1.0-bin.tar.gz
+        dest: /opt/apache-maven-3.1.0-bin.tar.gz
+    - name: Unzip do pacote maven
+      ansible.builtin.unarchive:
+        src: /opt/apache-maven-3.1.0-bin.tar.gz
+        dest: /opt/
+        remote_src: yes
+    - name: Instalação do Java
+      yum:
+        name: java-1.8.0-openjdk
+        state: latest
+    - name: Criação de diretório de app
+      file:
+        path: /opt/notes
+        state: directory
+        owner: app
+        group: app
+    - name: Instalação do Git
+      yum:
+        name: git
+        state: latest
+    - name: Clone do repositório notes - app
+      git:
+        repo: 'https://github.com/callicoder/spring-boot-mysql-rest-api-tutorial.git'
+        dest: /opt/notes
+        clone: yes
+        force: yes
+    - name: Configurar arquivo pom da camada maven
+      template:
+        src: pom.xml
+        dest: /opt/notes/pom.xml
+    - name: Configurar arquivo de propriedades para a camada de banco de dados
+      template:
+        src: application.properties
+        dest: /opt/notes/src/main/resources/application.properties
+    - name: Gerar pacote da aplicação
+      command: /opt/apache-maven-3.1.0/bin/mvn -f /opt/notes/pom.xml package
+      become_user: app
+    - name: Registrar versão do pacote
+      shell:
+        cmd: mvn help:evaluate -Dexpression=project.version -q -DforceStdout
+        chdir: /opt/notes/
+      register: app_version
+    - name: Configurar serviço do SystemD
+      template:
+        src: etc/systemd/system/notes.service
+        dest: /etc/systemd/system/notes.service
+      notify: reload daemon
+    - name: Iniciar o serviço notes
+      service:
+        name: notes
+        state: restarted
+  roles:
+    - configuracao-default-so
+  handlers:
+    - name: reload app
+      systemd:
+        state: restarted
+        daemon_reload: yes
+        name: 'notes'
+    - name: reload daemon
+      systemd:
+        daemon_reexec: yes
