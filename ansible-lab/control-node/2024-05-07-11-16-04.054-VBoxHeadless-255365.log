@@ -1,0 +1,12 @@
+Log created: 2024-05-07T11:16:04.541014000Z
+Process ID:  255365 (0x3e585)
+Parent PID:  2588 (0xa1c)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: app01_default_1714003607374_33540
+Arg[3]: --startvm
+Arg[4]: 209362f5-3faf-4ec9-9d7d-d2bdcb4f3acb
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2
