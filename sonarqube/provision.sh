@@ -26,9 +26,9 @@
 
 #Instalar sonarscanner
 
-#wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-#unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d /opt/
-#mv sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner
+wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d /opt/
+mv /opt/sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner
 chown -R sonar:sonar /opt/sonar-scanner
 echo 'export PATH=$PATH:/opt/sonar-scanner/bin' | sudo tee -a /etc/profile
 curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
