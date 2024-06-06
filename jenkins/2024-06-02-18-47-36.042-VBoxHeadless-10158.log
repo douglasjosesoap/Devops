@@ -1,0 +1,12 @@
+Log created: 2024-06-02T18:47:36.426650000Z
+Process ID:  10158 (0x27ae)
+Parent PID:  2653 (0xa5d)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: k3s_default_1716839450838_43459
+Arg[3]: --startvm
+Arg[4]: c8fe0a7f-557b-4719-9561-59169d7636c7
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2

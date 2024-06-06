@@ -1,0 +1,12 @@
+Log created: 2024-06-02T18:47:36.310914000Z
+Process ID:  157908 (0x268d4)
+Parent PID:  2653 (0xa5d)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: sonarqube_default_1715730728616_84500
+Arg[3]: --startvm
+Arg[4]: de0adb37-01de-46db-90d0-defab12fc03b
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2

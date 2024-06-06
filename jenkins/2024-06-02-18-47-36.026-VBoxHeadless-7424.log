@@ -1,0 +1,12 @@
+Log created: 2024-06-02T18:47:36.263773000Z
+Process ID:  7424 (0x1d00)
+Parent PID:  2653 (0xa5d)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: jenkins_default_1715791201203_813
+Arg[3]: --startvm
+Arg[4]: f616f3ec-94f6-4026-85c4-827cbb01926f
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2
